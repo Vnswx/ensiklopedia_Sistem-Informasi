@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Pages;
 
 
 class adminController extends Controller
@@ -13,6 +14,8 @@ class adminController extends Controller
             abort(403, 'Akses khusus Admin.');
         }
 
-        return view('admin.mainAdmin');
+        $pages = Pages::all();
+        // dd($pages);
+        return view('admin.mainAdmin', compact('pages'));
     }
 }

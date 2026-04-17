@@ -7,7 +7,8 @@
     <title>Admin test</title>
 </head>
 <body>
-    halo, aku admin
-    <a href="{{ route('dashboard') }}" style="color: red;">Balik ke homepage</a>
+    halo, aku admin <br>
+    <a href="{{ route('homepage') }}" style="color: red;">Balik ke homepage</a> <br>
+    <a href="{{ route('pages.index') }}" style="color: red;">Ke index pages</a>
 </body>
 </html>
