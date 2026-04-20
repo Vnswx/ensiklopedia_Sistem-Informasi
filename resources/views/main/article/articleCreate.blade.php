@@ -18,7 +18,7 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('pages.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('article.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <input type="text" name="title" placeholder="Judul">
@@ -44,11 +44,6 @@
             @endforeach
             </select>
         </div>
-
-        <select name="is_active">
-            <option value="1">Aktif</option>
-            <option value="0">Nonaktif</option>
-        </select>
 
         <button type="submit">Simpan</button>
     </form>

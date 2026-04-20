@@ -71,16 +71,16 @@ class authController extends Controller
 
     public function editProfile(){
         $user = Auth::user();
-        return view('main.edit-profile', compact('user'));
+        return view('main.profile.edit-profile', compact('user'));
     }
 
     public function updateProfile(Request $request){
         $user = Auth::user();
 
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            // 'password' => 'required|confirmed',
+            'name' => 'nullable',
+            'email' => 'nullable',
+            'password' => 'confirmed',
             'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048'
         ]);
 
@@ -104,6 +104,7 @@ class authController extends Controller
         }
 
         $user->update($data);
+        // dd($user);
         return redirect()->route('homepage')->with('success', 'udah diubah');
 
     }

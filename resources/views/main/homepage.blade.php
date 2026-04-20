@@ -29,6 +29,16 @@
                 @endforeach
                 <br>
                 <a href="{{ route('profile.edit') }}">Edit Profil</a>
+                <a href="{{ route('article.index') }}">Buat Artikel</a>
+            <div style="padding: 15">
+                <h1>Judul: {{ $profil->title ?? 'Belum ada data' }}</h1>
+                <p>isi: {{ $profil->content ?? 'Belum ada data' }}</p> <br>
+                <h2>Akademik: </h2>
+                @foreach ($akademik as $a)
+                    <p>{{ $a->title }}</p>
+                    <p>{{ $a->content }}</p>
+                @endforeach
+            </div>
             </p>
         </div>
 

@@ -7,12 +7,11 @@
 
     <h2>Data Pages</h2>
 
-    <!-- Notifikasi -->
     @if(session('success'))
         <p style="color: green">{{ session('success') }}</p>
     @endif
+    <a href="{{ route('admin.panel') }}">Kembali ke admin panel</a> <br>
 
-    <!-- Tombol tambah -->
     <a href="{{ route('pages.create') }}">+ Tambah Page</a>
 
     <br><br>
@@ -23,40 +22,43 @@
                 <th>No</th>
                 <th>Title</th>
                 <th>Slug</th>
-                <th>Content</th>
-                <th>Image</th>
+                <th>Isi</th>
+                <th>Gambar</th>
+                <th>Kategori</th>
                 <th>Status</th>
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-            @forelse($pages as $index => $page)
+            @forelse($pages as $index => $p)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $page->title }}</td>
-                    <td>{{ $page->slug }}</td>
+                    <td>{{ $p->title }}</td>
+                    <td>{{ $p->slug }}</td>
                     
                     <!-- Biar content ga kepanjangan -->
-                    <td>{{ Str::limit($page->content, 50) }}</td>
-
+                    <td>{{ Str::limit($p->content, 50) }}</td>
+                    
                     <td>
-                        @if($page->image)
-                            <img src="{{ asset('storage/'.$page->image) }}" width="80">
+                        @if($p->image)
+                        <img src="{{ asset('storage/'.$p->image) }}" width="80">
                         @else
-                            -
+                        -
                         @endif
                     </td>
-
+                    
+                    <td>{{ $p->categories->title }}</td>
+                    
                     <td>
-                        {{ $page->is_active ? 'Aktif' : 'Nonaktif' }}
+                        {{ $p->is_active ? 'Aktif' : 'Nonaktif' }}
                     </td>
 
                     <td>
                         <!-- Edit -->
-                        <a href="{{ route('pages.edit', $page->id) }}">Edit</a>
+                        <a href="{{ route('pages.edit', $p->id) }}">Edit</a>
 
                         <!-- Delete -->
-                        <form action="{{ route('pages.delete', $page->id) }}" method="POST" style="display:inline">
+                        <form action="{{ route('pages.delete', $p->id) }}" method="POST" style="display:inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" onclick="return confirm('Yakin hapus?')">Hapus</button>

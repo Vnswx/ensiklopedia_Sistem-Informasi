@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('categories_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->text('slug');
             $table->text('content');
             $table->string('image')->nullable();
-            // $table->enum('category', ['profil', 'akademik', 'sdm', 'administrasi', 'media']);
-            $table->boolean('is_active')->default(true);
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

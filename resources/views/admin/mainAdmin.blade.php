@@ -9,6 +9,7 @@
 <body>
     halo, aku admin <br>
     <a href="{{ route('homepage') }}" style="color: red;">Balik ke homepage</a> <br>
-    <a href="{{ route('pages.index') }}" style="color: red;">Ke index pages</a>
+    <a href="{{ route('pages.index') }}" style="color: red;">Ke index pages</a> <br>
+    <a href="{{ route('admin.article') }}" style="color: red;">Ke index Article</a>
 </body>
 </html>

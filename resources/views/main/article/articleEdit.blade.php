@@ -9,15 +9,15 @@
 </head>
 
 <body>
-    <form action="{{ route('pages.update', $pages->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('article.update', $article->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <input type="text" name="title" placeholder="Judul" value="{{ $pages->title }}">
+        <input type="text" name="title" placeholder="Judul" value="{{ $article->title }}">
         @error('title')
             <small>{{ $message }}</small>
         @enderror
 
-        <textarea name="content">{{ $pages->content }}</textarea>
+        <textarea name="content">{{ $article->content }}</textarea>
         @error('content')
             <small>{{ $message }}</small>
         @enderror
@@ -27,7 +27,7 @@
         <div class="form-group">
             <label for="category">Kategori Halaman</label>
             <select name="categories_id" id="category" class="form-controll">
-                <option value="{{ $pages->categories->id }}">{{ $pages->categories->title }}</option>
+                <option value="{{ $article->categories->id }}">{{ $article->categories->title }}</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">
                         {{ $category->title }}
